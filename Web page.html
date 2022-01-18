@@ -164,6 +164,14 @@ div {
             
             function addHtmlTableRow()
             {
+                 var Person = {
+fname: "",
+lname: "",
+age:0,
+email:"",
+phone: "",
+gender:""
+};
                 if(!checkEmptyInput()){
                 var newRow = table.insertRow(table.length),
                     cell1 = newRow.insertCell(0),
@@ -172,19 +180,32 @@ div {
                     cell4 = newRow.insertCell(3),
                     cell5 = newRow.insertCell(4),
                     cell6 = newRow.insertCell(5),
-                    fname = document.getElementById("fname").value,
-                    lname = document.getElementById("lname").value,
-                    age = document.getElementById("age").value;
-                    email = document.getElementById("email").value;
-                    phone = document.getElementById("phone").value;
-                    gender = document.getElementById("gender").value;
+                    cell7 = newRow.insertCell(6);
+                    Person.fname = document.getElementById("fname").value,
+                    Person.lname = document.getElementById("lname").value,
+                    Person.age = document.getElementById("age").value;
+                    Person.email = document.getElementById("email").value;
+                    Person.phone = document.getElementById("phone").value;
+                    Person.gender = document.getElementById("gender").value;
+
+                    var button = document.createElement("button");
+                    button.innerHTML = "edit";
+                    button.id = `editButton${table.length}`;
+
+                    button.addEventListener ("click", function() {
+                      //Add function to delete row and send data for editing
+                    });
                     
-                cell1.innerHTML = fname;
-                cell2.innerHTML = lname;
-                cell3.innerHTML = age;
-                cell4.innerHTML = email;
-                cell5.innerHTML = phone;
-                cell6.innerHTML = gender;
+                cell1.innerHTML = Person.fname;
+                cell2.innerHTML = Person.lname;
+                cell3.innerHTML = Person.age;
+                cell4.innerHTML = Person.email;
+                cell5.innerHTML = Person.phone;
+                cell6.innerHTML = Person.gender;
+                cell7.appendChild(button);
+var lscount = localStorage.length;
+localStorage.setItem("Person" + lscount, JSON.stringify(Person));
+            location.reload();
                 selectedRowToInput();
             }
             }
